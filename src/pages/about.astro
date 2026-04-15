@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layouts/Header.astro';
+import Footer from '../components/layouts/footer.astro';
+import Store from '../components/layouts/onlinestore.astro';
+import conceptImg from '../assets/img/concept.jpg';
+import conceptMdSpImg from '../assets/img/concept-md-sp.png';
+import shopImg from '../assets/img/balloon.jpg';
+import customImg from '../assets/img/flower.jpg';
+import boothImg from '../assets/img/hero.jpg';
+
+const title = 'About | Cheri Livrer';
+const description = 'Cheri Livrer の想いやブランドについてご紹介します。';
+---
+
+<Layout {title} {description}>
+	<Header />
+	<main id="main-content" class="bg-[var(--color-header-bg)] overflow-x-hidden pt-14 text-[var(--color-black)] antialiased md:pt-24" tabindex="-1">
+		<section class="px-6 pt-8 md:px-10 md:pt-10" aria-labelledby="about-heading">
+			<div class="flex flex-col items-center justify-center">
+				<h1 id="about-heading" class="font-heading">About Us</h1>
+				<span class="font-body text-sm text-[var(--color-gray)]">Cheri Livrer について</span>
+			</div>
+		</section>
+
+		<section aria-labelledby="concept-heading">
+			<div class="flex flex-col gap-10 px-5 py-12 md:px-11 md:py-16 lg:flex-row lg:items-start lg:justify-center lg:gap-28 lg:px-12 lg:py-24">
+				<picture class="block w-full max-w-[720px] overflow-hidden rounded-lg lg:w-[400px] lg:max-w-none">
+					<source media="(max-width: 1023px)" srcset={conceptMdSpImg.src} />
+					<img
+						src={conceptImg.src}
+						alt="Cheri Livrer のコンセプトイメージ"
+						width={conceptImg.width}
+						height={conceptImg.height}
+						class="h-auto w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105"
+						loading="lazy"
+						decoding="async"
+					/>
+				</picture>
+
+				<div class="flex flex-col items-start justify-center gap-12">
+					<div class="flex flex-col gap-2 lg:pt-10">
+						<div class="flex items-center gap-4">
+							<span class="h-px w-14 bg-accent"></span>
+							<h2 class="font-display text-[0.85rem] tracking-[0.28em] text-accent">CONCEPT</h2>
+						</div>
+
+						<h2 class="font-body text-2xl font-medium leading-normal tracking-[0.06em] text-ink md:text-4xl">
+							<span class="block lg:whitespace-nowrap">人と人を繋ぎ、大切な人へ</span>
+							<span class="block lg:whitespace-nowrap">幸せを届ける贈りもの。</span>
+						</h2>
+					</div>
+
+					<div>
+						<p class="font-body text-sm text-gray lg:w-100">
+							Cheri Livrer（シェリリブレ）は、バルーンやアーティフィシャルフラワーを用いたオリジナルギフトの制作・販売を行っているアトリエです。
+	                        「おめでとう」や「ありがとう」の気持ちを、空間をパッと明るくする「目に見えるカタチ」にしてお届けしています。
+							オンラインショップでの販売やオーダーメイド制作のほか、お花を使ったフォトブース（写真撮影用スペース）の装飾など、特別な一日を彩るお手伝いをいたします。
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="w-full bg-products py-24 md:py-40" aria-labelledby="what-we-do-heading">
+			<div class="mx-auto max-w-[1200px] px-4 md:px-12">
+				<div
+					data-about-fade
+					class="mb-20 px-2 opacity-0 translate-y-10 transition-[opacity,transform] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:mb-32"
+				>
+					<p class="mb-4 font-heading text-xs uppercase tracking-[0.3em] text-accent">Our Service</p>
+					<h2 id="what-we-do-heading" class="font-heading text-3xl tracking-widest text-[var(--color-black)] md:text-4xl">
+						事業内容・サービス
+					</h2>
+				</div>
+
+				<div class="space-y-32 md:space-y-48">
+					<article
+						data-about-fade
+						class="grid grid-cols-1 gap-0 opacity-0 translate-y-10 transition-[opacity,transform] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:grid-cols-12 md:items-end"
+					>
+						<div class="group w-[90%] md:col-start-1 md:col-end-9 md:row-start-1 md:w-full">
+							<div class="aspect-square overflow-hidden rounded-sm bg-[var(--color-about)] md:aspect-[4/3]">
+								<img
+									src={shopImg.src}
+									alt="オンラインショップのイメージ"
+									width={shopImg.width}
+									height={shopImg.height}
+									class="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+									loading="lazy"
+									decoding="async"
+								/>
+							</div>
+						</div>
+
+						<div
+							class="relative z-10 -mt-12 ml-auto w-[90%] border border-black/5 bg-white px-6 pb-6 pt-2 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.08)] md:col-start-7 md:col-end-13 md:row-start-1 md:-mb-12 md:ml-0 md:mt-0 md:w-full md:px-10 md:pb-10 md:pt-4"
+						>
+							<span class="mb-2 block font-heading text-3xl text-accent/40 md:text-4xl">01</span>
+							<h3 class="mb-2 font-heading text-xl tracking-widest text-[var(--color-black)] md:text-2xl">Online Shop</h3>
+							<p class="mb-5 text-[10px] uppercase tracking-widest text-[var(--color-gray)] md:text-xs">オンラインショップでの販売</p>
+							<p class="text-sm leading-[2.2] tracking-wide text-[var(--color-black)]/80">
+								季節やライフイベントに合わせたバルーンアレンジメントやフラワーボックスなど、アトリエで制作した完成品をご購入いただけます。すぐにお部屋に飾れる、洗練されたデザインを揃えています。
+							</p>
+						</div>
+					</article>
+
+					<article
+						data-about-fade
+						class="grid grid-cols-1 gap-0 opacity-0 translate-y-10 transition-[opacity,transform] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:grid-cols-12 md:items-start"
+					>
+						<div class="order-1 ml-auto w-[90%] group md:order-2 md:col-start-5 md:col-end-13 md:row-start-1 md:ml-0 md:w-full">
+							<div class="aspect-square overflow-hidden rounded-sm bg-[var(--color-about)] md:aspect-[4/3]">
+								<img
+									src={customImg.src}
+									alt="オーダーメイド制作のイメージ"
+									width={customImg.width}
+									height={customImg.height}
+									class="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+									loading="lazy"
+									decoding="async"
+								/>
+							</div>
+						</div>
+
+						<div
+							class="relative z-10 order-2 -mt-12 mr-auto w-[90%] border border-black/5 bg-white px-6 pb-6 pt-2 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.08)] md:order-1 md:col-start-1 md:col-end-7 md:row-start-1 md:mr-0 md:mt-6 md:w-full md:px-10 md:pb-10 md:pt-4"
+						>
+							<span class="mb-2 block font-heading text-3xl text-accent/40 md:text-4xl">02</span>
+							<h3 class="mb-2 font-heading text-xl tracking-widest text-[var(--color-black)] md:text-2xl">Custom Order</h3>
+							<p class="mb-5 text-[10px] uppercase tracking-widest text-[var(--color-gray)] md:text-xs">オーダーメイド制作</p>
+							<p class="text-sm leading-[2.2] tracking-wide text-[var(--color-black)]/80">
+								「こんな色合いで作ってほしい」「予算はこれくらいで」といったイメージやご要望をお聴きし、それに添って世界に一つだけのオリジナルギフトをお作りすることも可能です。
+							</p>
+						</div>
+					</article>
+
+					<article
+						data-about-fade
+						class="grid grid-cols-1 gap-0 opacity-0 translate-y-10 transition-[opacity,transform] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:flex md:flex-col md:items-center"
+					>
+						<div class="group w-[90%] md:w-full">
+							<div class="aspect-[4/3] overflow-hidden rounded-sm bg-[var(--color-about)] shadow-sm md:aspect-[21/9]">
+								<img
+									src={boothImg.src}
+									alt="フォトブース・空間装飾のイメージ"
+									width={boothImg.width}
+									height={boothImg.height}
+									class="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+									loading="lazy"
+									decoding="async"
+								/>
+							</div>
+						</div>
+
+						<div
+							class="relative z-10 -mt-12 ml-auto w-[90%] border border-black/5 bg-white px-6 pb-6 pt-2 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.08)] md:ml-0 md:-mt-24 md:w-3/4 md:px-10 md:pb-10 md:pt-4 md:text-center lg:w-2/3"
+						>
+							<span class="mb-2 block font-heading text-3xl text-accent/40 md:text-4xl">03</span>
+							<h3 class="mb-2 font-heading text-xl tracking-widest text-[var(--color-black)] md:text-2xl">Photo Booth &amp; Display</h3>
+							<p class="mb-5 text-[10px] uppercase tracking-widest text-[var(--color-gray)] md:text-xs">フォトブース・空間装飾</p>
+							<p class="text-sm leading-[2.2] tracking-wide text-[var(--color-black)]/80 md:text-center">
+								お花やバルーンを使い、思い出に残る「フォトブース（写真撮影用のスペース）」をお作りしています。ウェディングやパーティーなど、特別な空間をより華やかに演出します。
+							</p>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+        <Store />
+	</main>
+	<Footer />
+</Layout>
+
+<script>
+	import { initAboutPage } from '../js/about.js';
+	initAboutPage();
+</script>

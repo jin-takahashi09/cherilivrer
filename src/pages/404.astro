@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layouts/Header.astro';
+import Footer from '../components/layouts/footer.astro';
+---
+
+<Layout
+	title="ページが見つかりません | Cheri Livrer"
+	description="お探しのページは見つかりませんでした。Cheri Livrer のトップからお探しください。"
+	noindex
+>
+	<Header />
+	<main id="main-content" class="mx-auto max-w-lg px-6 pb-24 pt-32 text-center md:pt-40">
+		<h1 class="font-heading text-2xl tracking-wide text-[var(--color-black)] md:text-3xl">ページが見つかりません</h1>
+		<p class="mt-6 font-body text-sm leading-relaxed text-[var(--color-gray)]">
+			お探しのページは移動したか、削除された可能性があります。
+		</p>
+		<p class="mt-8">
+			<a
+				href="/"
+				class="inline-flex items-center gap-2 border border-[var(--color-black)] px-6 py-3 text-[0.72rem] tracking-[0.2em] text-[var(--color-black)] no-underline transition-colors hover:bg-[var(--color-black)] hover:text-white"
+			>
+				トップへ戻る
+			</a>
+		</p>
+	</main>
+	<Footer />
+</Layout>

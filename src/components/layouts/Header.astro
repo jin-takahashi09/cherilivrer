@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import logoImg from '../../assets/img/logo.png';
+
+interface Props {
+	fixed?: boolean;
+}
+
+const { fixed = true } = Astro.props;
+---
+
+<header
+	class:list={[
+		'z-50 flex w-full items-center justify-between gap-4 overflow-visible border-b border-black/[0.06] bg-[var(--color-header-bg)] px-6 py-0 font-body shadow-[0_2px_24px_-8px_rgba(82,72,60,0.08)] md:px-10',
+		fixed ? 'fixed inset-x-0 top-0' : 'relative',
+	]}
+>
+	<a
+		href="/#home"
+		class="relative z-[60] inline-flex shrink-0 items-center no-underline transition-opacity hover:opacity-[0.85]"
+	>
+		<Image
+			src={logoImg}
+			alt="Cheri Livrer"
+			width={500}
+			height={500}
+			class="logo-on-light h-14 w-auto object-contain md:h-24"
+			loading="eager"
+			fetchpriority="high"
+		/>
+	</a>
+	<div class="flex shrink-0 items-center gap-2">
+		<button
+			type="button"
+			data-menu-toggle
+			class="group relative z-[60] flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-1.5 rounded-md border border-transparent hover:bg-black/[0.05] md:hidden"
+			aria-controls="main-menu"
+			aria-expanded="false"
+			aria-label="メニューを開く"
+		>
+			<span class="block h-0.5 w-[1.35rem] origin-center bg-[var(--color-header-fg)] transition duration-200 group-[.is-open]:translate-y-2 group-[.is-open]:rotate-45"></span>
+			<span class="block h-0.5 w-[1.35rem] origin-center bg-[var(--color-header-fg)] transition duration-200 group-[.is-open]:scale-x-0 group-[.is-open]:opacity-0"></span>
+			<span class="block h-0.5 w-[1.35rem] origin-center bg-[var(--color-header-fg)] transition duration-200 group-[.is-open]:-translate-y-2 group-[.is-open]:-rotate-45"></span>
+		</button>
+		<nav
+			id="main-menu"
+			data-mobile-nav
+			aria-label="メイン"
+			class="max-md:invisible max-md:fixed max-md:inset-0 max-md:z-[45] flex flex-col items-center justify-center gap-2 max-md:bg-[var(--color-header-bg)] max-md:opacity-0 max-md:transition-[opacity,visibility] max-md:duration-300 max-md:pointer-events-none md:relative md:inset-auto md:z-auto md:flex md:h-auto md:w-auto md:flex-row md:justify-end md:bg-transparent md:opacity-100 md:transition-none max-md:[&.is-open]:visible max-md:[&.is-open]:pointer-events-auto max-md:[&.is-open]:opacity-100"
+		>
+			<ul class="m-0 flex list-none flex-col items-center gap-10 p-0 md:flex-row md:flex-wrap md:items-center md:justify-end md:gap-10 [&_a]:text-[0.85rem] [&_a]:font-medium [&_a]:tracking-[0.22em] [&_a]:text-[color:var(--color-header-fg)] [&_a]:no-underline [&_a]:uppercase [&_a]:transition-colors [&_a:hover]:text-accent md:[&_a]:text-xs">
+				<li><a href="/about">About</a></li>
+				<li><a href="/collection">Collection</a></li>
+				<li><a href="/#shop">Shop</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+<script>
+	import { initMobileMenu } from '../../js/mobile-menu.js';
+	import { initSmoothScrollNav } from '../../js/smooth-scroll.js';
+	initMobileMenu();
+	initSmoothScrollNav();
+</script>

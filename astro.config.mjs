@@ -5,7 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()]
-  }
+	// 本番URL（canonical・OGP・sitemap）。デプロイ先のドメインに必ず合わせる
+	site: 'https://example.com',
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });

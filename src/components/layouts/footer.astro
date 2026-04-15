@@ -1,0 +1,62 @@
+---
+const instagramUrl = 'https://www.instagram.com/cheri_livrer';
+const lineUrl = 'https://lin.ee/m3M0UIf';
+---
+
+<footer
+	class="section-fade w-full border-b border-[var(--color-shop-underline)] px-6 pb-10 pt-16 text-[color:var(--color-footer-fg)] md:px-10 md:pb-12 md:pt-20"
+	style="--section-fade-top: var(--color-shop-fade-end); --section-fade-bottom: var(--color-footer-bg);"
+	aria-label="サイトフッター"
+>
+	<div class="mx-auto flex max-w-2xl flex-col items-center gap-10 md:gap-12">
+		<p class="m-0 font-heading text-[clamp(1.35rem,3.5vw,1.85rem)] font-normal uppercase tracking-[0.28em] text-[color:var(--color-footer-fg)]">
+			Cheri Livrer
+		</p>
+
+		<div class="flex flex-col items-center gap-4 md:flex-row md:flex-wrap md:justify-center md:gap-x-12 md:gap-y-6">
+			<a
+				href={instagramUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="group inline-flex w-42 items-center gap-3 no-underline transition-opacity hover:opacity-85 md:w-auto"
+			>
+				<span
+					class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/[0.12] bg-white/50 text-[color:var(--color-footer-fg)]"
+					aria-hidden="true"
+				>
+					<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+						<rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+						<circle cx="12" cy="12" r="3.5"></circle>
+						<circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"></circle>
+					</svg>
+				</span>
+				<span class="font-heading text-base tracking-[0.06em] text-[color:var(--color-footer-fg)] md:text-lg">Instagram</span>
+			</a>
+
+			<a
+				href={lineUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="group inline-flex w-42 items-center gap-3 no-underline transition-opacity hover:opacity-85 md:w-auto"
+			>
+				<span
+					class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/[0.12] bg-white/50 text-[color:var(--color-footer-fg)]"
+					aria-hidden="true"
+				>
+					<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+						<path
+							d="M12 3C7.03 3 3 6.38 3 10.5c0 1.96 1.04 3.74 2.73 4.93L4 21l5.87-2.37c.65.18 1.33.27 2.03.27 4.97 0 9-3.38 9-7.5S16.97 3 12 3z"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						></path>
+					</svg>
+				</span>
+				<span class="font-heading text-base tracking-[0.06em] text-[color:var(--color-footer-fg)] md:text-lg">Official LINE</span>
+			</a>
+		</div>
+
+		<p class="m-0 text-center font-body text-[0.65rem] tracking-[0.2em] text-[color:var(--color-footer-fg)] opacity-65 md:text-xs">
+			© 2026 Cheri Livrer. All rights reserved.
+		</p>
+	</div>
+</footer>

@@ -1,0 +1,5 @@
+# Sitemap のURLは astro.config.mjs の site と同じドメインにしてください
+User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml

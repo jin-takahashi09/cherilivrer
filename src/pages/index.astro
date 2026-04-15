@@ -1,10 +1,122 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/layouts/hero.astro';
+import Footer from '../components/layouts/footer.astro';
+import Products from '../components/layouts/products.astro';
+import OnlineStore from '../components/layouts/onlinestore.astro';
+import { Image } from "astro:assets";
+import conceptImg from '../assets/img/concept.jpg';
+import conceptMdSpImg from '../assets/img/concept-md-sp.png';
+import seasonImg from '../assets/img/season.jpg';
+import balloonImg from '../assets/img/balloon.jpg';
+import flowerImg from '../assets/img/flower.jpg';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const products = [
+	{ src: balloonImg, alt: "手作りバルーンギフトの画像", title: "Balloon", description: "上品に彩るバルーンギフト", href: "/collection#category-balloon", offsetClass: "md:mt-0" },
+	{ src: flowerImg, alt: "手作りフラワーギフトの画像", title: "Flower", description: "暮らしに寄り添う花の彩り", href: "/collection#category-flower", offsetClass: "md:mt-14 lg:mt-18" },
+	{ src: seasonImg, alt: "手作りシーズンギフトの画像", title: "Season", description: "季節に寄り添うギフト", href: "/collection#category-season", offsetClass: "md:mt-28 lg:mt-36" },
+];
 ---
 
-<Layout>
-	
+<Layout title="topページ | Cheri Livrer" description="Cheri Livrerは、記念日や特別な日に寄り添う手作りのバルーン・フラワーギフトをお届けするブランドです。想いを込めた作品や世界観をご紹介します。">
+	<main id="main-content" tabindex="-1">
+		<Hero />
+		<section id="about" class="scroll-mt-20 md:scroll-mt-24 border-t border-black/[0.06] bg-[#f7f1e3]" aria-label="コンセプト">
+			<div class="flex flex-col items-start justify-start gap-8 px-10 py-12 md:px-11 md:py-16 lg:mx-auto lg:w-fit lg:flex-row lg:items-start lg:justify-center lg:gap-28 lg:px-12 lg:py-24">
+				<picture data-index-fade class="block translate-y-10 overflow-hidden rounded-xl opacity-0 transition-[opacity,transform] duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] lg:shrink-0">
+					<source media="(max-width: 1023px)" srcset={conceptMdSpImg.src} />
+					<img
+						src={conceptImg.src}
+						alt="手作りバルーンの制作イメージ"
+						width="450"
+						height="600"
+						class="rounded-xl object-contain object-center lg:aspect-auto lg:object-cover"
+					/>
+				</picture>
+
+				<div data-index-fade class="flex translate-y-10 flex-col items-start justify-center gap-7 opacity-0 transition-[opacity,transform] delay-100 duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] max-lg:max-w-full md:max-w-3xl lg:pt-10 md:delay-150">
+				<div class="flex flex-col gap-2">
+					<div class="flex items-center gap-4">
+						<span class="h-px w-14 bg-accent"></span>
+						<p class="font-display text-[0.85rem] tracking-[0.28em] text-accent">CONCEPT</p>
+					</div>
+
+					<h2 class="font-body text-2xl font-medium leading-normal tracking-[0.06em] text-ink md:text-4xl">
+						<span class="block md:whitespace-nowrap">人と人を繋ぎ、大切な人へ</span>
+						<span class="block md:whitespace-nowrap">幸せを届ける贈りもの。</span>
+					</h2>
+				</div>
+
+				<div class="flex flex-col items-start justify-center gap-12">
+					<p class="text-gray lg:w-100">大切な人へ"おめでとう"や"ありがとう"の気持ちを込めて。バルーンやお花で想いを優しくカタチにしてお届けします。特別な瞬間を彩るギフトのお手伝いをさせてください。</p>
+					
+					<a href="/about" class="relative inline-flex items-center gap-3 overflow-hidden border border-black px-6 py-3 text-[0.72rem] tracking-[0.2em] text-black/90 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-black before:transition-all before:duration-500 before:content-[''] hover:text-white hover:before:w-full active:text-white active:before:w-full">
+						<span class="relative z-10">ABOUT US</span>
+						<svg class="relative z-10 h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="products" class="scroll-mt-20 md:scroll-mt-24 bg-products pb-24">
+			<div data-products-intro data-index-fade class="flex translate-y-10 flex-col items-center justify-center gap-7 py-20 text-center opacity-0 transition-[opacity,transform] duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:py-24">
+				<span class="font-body text-[0.72rem] font-medium tracking-[0.5em] text-black">COLLECTION</span>
+				<h2 class="font-heading text-[clamp(2.2rem,6vw,3.6rem)] font-normal italic leading-none tracking-[0.18em] text-black">Products</h2>
+			</div>
+			<div data-products-scroll-root class="relative min-h-[400vh] w-full md:min-h-0">
+				<div class="sticky top-20 z-0 flex h-[calc(100dvh-5rem)] w-full max-h-[calc(100svh-5rem)] touch-pan-y overflow-hidden md:static md:h-auto md:max-h-none md:overflow-visible md:top-auto">
+					<div data-products-track class="flex h-full flex-nowrap items-stretch gap-0 will-change-transform md:mx-auto md:grid md:h-auto md:w-full md:max-w-280 md:grid-cols-3 md:items-start md:gap-12 md:px-10 md:will-change-auto">
+					{products.map((item, idx) => (
+						<Products
+							src={item.src}
+							alt={item.alt}
+							title={item.title}
+							description={item.description}
+							href={item.href}
+							offsetClass={item.offsetClass}
+							revealDelayClass={idx === 0 ? "delay-0" : idx === 1 ? "delay-150" : "delay-300"}
+						/>
+					))}
+					</div>
+				</div>
+			</div>
+			<div data-index-fade class="mx-auto flex w-full max-w-280 translate-y-10 flex-col items-center gap-14 px-6 pb-24 pt-8 opacity-0 transition-[opacity,transform] delay-100 duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:gap-30 md:px-10 md:pt-20 md:delay-150">
+				<a href="/collection" class="relative inline-flex items-center gap-3 overflow-hidden border border-black px-6 py-3 text-[0.72rem] tracking-[0.2em] text-black transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-black before:transition-all before:duration-500 before:content-[''] hover:text-white hover:before:w-full active:text-white active:before:w-full">
+					<span class="relative z-10">VIEW MORE</span>
+					<svg class="relative z-10 h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+				</a>
+			</div>
+		</section>
+
+		<OnlineStore />
+
+		<script>
+			import { initProductsScroll } from '../js/products-scroll.js';
+
+			const initIndexScrollReveal = () => {
+				const targets = document.querySelectorAll('[data-index-fade]');
+				if (!targets.length) return;
+
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (!entry.isIntersecting) continue;
+							entry.target.classList.add('translate-y-0', 'opacity-100');
+							entry.target.classList.remove('-translate-y-10', 'translate-y-10', 'opacity-0');
+							observer.unobserve(entry.target);
+						}
+					},
+					{ root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.12 },
+				);
+
+				for (const el of targets) {
+					observer.observe(el);
+				}
+			};
+
+			initProductsScroll();
+			initIndexScrollReveal();
+		</script>
+	</main>
+	<Footer />
 </Layout>

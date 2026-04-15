@@ -1,19 +1,61 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	/** 未指定時はトップ用のデフォルト */
+	title?: string;
+	description?: string;
+	/** true のとき検索結果に出したくないページ（404 等） */
+	noindex?: boolean;
+}
+
+const {
+	title: titleProp,
+	description: descriptionProp,
+	noindex = false,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://example.com');
+const canonicalURL = new URL(Astro.url.pathname, site);
+const defaultTitle = 'Cheri Livrer | 手作りバルーン・フラワーギフト';
+const defaultDescription =
+	'記念日や特別な日に贈る、手作りのバルーン・フラワーギフト。Cheri Livrer（シェリリヴレ）のコンセプトと作品をご紹介します。';
+const title = titleProp ?? defaultTitle;
+const description = descriptionProp ?? defaultDescription;
+const ogImage = new URL('/ogp.jpg', site).href;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex, follow" />}
+		{!noindex && <link rel="canonical" href={canonicalURL.href} />}
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="ja_JP" />
+		<meta property="og:url" content={canonicalURL.href} />
+		<meta property="og:site_name" content="Cheri Livrer" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;

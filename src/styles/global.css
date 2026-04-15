@@ -1,1 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Shippori+Mincho:wght@400;500;600&display=swap");
+
 @import "tailwindcss";
+
+@theme inline {
+	/* 配色・トークン（変更は主にここ） */
+	--color-light: #faf9f6;
+	--color-black: #2c2a29;
+	--color-accent: #b89d74;
+	--color-gray: #8c8a88;
+	--color-header-bg: #f9f7f2;
+	--color-footer-bg: #d8d2c7;
+	--color-header-fg: #2c2a29;
+	/* オンラインショップ背景（単色・グラデなし） */
+	--color-shop-bg: #f5f3ee;
+	--color-shop-fg: #2c2a29;
+	--color-shop-underline: #333333;
+	--color-shop-card: #f0ebe4;
+	--color-footer-fg: #5a524a;
+	--color-products: #ebe4d8;
+	--color-about: #f7f1e3;
+	--color-shop-fade-end: #f2ede4;
+	/* Collection ページ用（元デザインのパレット） */
+	--color-collection-ink: #5a524a;
+	--color-collection-accent: #d2bfae;
+	--color-collection-muted: #a8a09a;
+	--color-collection-surface: #ffffff;
+	--color-collection-fill: #f8f4f0;
+	--color-collection-footer: #e6dfd8;
+}
+
+@keyframes collection-scroll-right {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(300%);
+	}
+}
+
+@theme {
+	--font-sans: "Shippori Mincho", ui-serif, serif;
+	--font-body: "Shippori Mincho", ui-serif, serif;
+	--font-heading: "Cormorant Garamond", "Shippori Mincho", ui-serif, serif;
+}
+
+@layer base {
+	html,
+	:host {
+		font-family: var(--font-body);
+		font-synthesis: none;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	body {
+		font-weight: 400;
+		line-height: 1.75;
+		letter-spacing: 0.03em;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-heading);
+		font-weight: 500;
+		line-height: 1.28;
+		letter-spacing: 0.06em;
+	}
+
+	h1 {
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+	}
+
+	h2 {
+		font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+	}
+
+	h3 {
+		font-size: clamp(1.15rem, 2vw, 1.35rem);
+	}
+}
+
+/* ヘッダーロゴの見え方を変えるとき */
+.logo-on-light {
+	filter: brightness(0) invert(0.14) sepia(0.15) saturate(0.85);
+}
+
+.bg-shop-section {
+	background-color: var(--color-shop-bg);
+}
+
+.shop-store-card-fade {
+	background-image: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(255, 255, 255, 0) 22%,
+		rgba(255, 255, 255, 0.42) 52%,
+		#ffffff 100%
+	);
+}
+
+/* セクションのつなぎ: index の各 section style と --section-fade-* を合わせる */
+.section-fade {
+	--section-fade-top: var(--color-header-bg);
+	--section-fade-bottom: var(--color-footer-bg);
+	background-color: #ffffff;
+	background-image: linear-gradient(
+		180deg,
+		var(--section-fade-top) 0%,
+		color-mix(in srgb, var(--section-fade-top) 38%, white 62%) 11%,
+		#ffffff 28%,
+		#ffffff 68%,
+		color-mix(in srgb, var(--section-fade-bottom) 18%, white 82%) 86%,
+		var(--section-fade-bottom) 100%
+	);
+}
+
+/* 767px を変える場合は products-scroll.js・mobile-menu.js も合わせる */
+@media (max-width: 767px) {
+	[data-products-track] {
+		transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	}
+
+	[data-product-panel] {
+		opacity: 0;
+		transform: translateY(clamp(2.5rem, 20vh, 6.5rem));
+		transition:
+			opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+			transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	[data-product-panel].is-near {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

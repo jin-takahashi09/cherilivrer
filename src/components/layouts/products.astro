@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+	src: ImageMetadata;
+	alt: string;
+	title: string;
+	description: string;
+	href: string;
+	offsetClass?: string;
+	revealDelayClass?: string;
+}
+
+const { src, alt, title, description, href, offsetClass = "", revealDelayClass = "" } = Astro.props as Props;
+---
+<article
+	data-product-panel
+	data-index-fade
+	class:list={[
+		"box-border flex w-screen shrink-0 -translate-y-10 flex-col items-center px-6 text-center opacity-0 transition-[opacity,transform] duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:w-auto md:max-w-none md:shrink md:px-0",
+		offsetClass,
+		revealDelayClass,
+	]}
+>
+	<a href={href} class="group block w-full max-w-md text-inherit no-underline md:max-w-none">
+		<div data-product-visual class="w-full overflow-hidden">
+			<Image
+				src={src}
+				alt={alt}
+				width={520}
+				height={760}
+				class="aspect-[3/4] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-focus-visible:scale-105 md:will-change-auto"
+			/>
+		</div>
+		<div data-product-text class="mt-7 w-full md:mt-6">
+			<h3 class="font-heading text-3xl font-normal text-black md:text-3xl">{title}</h3>
+			<p class="mt-2 text-xs tracking-[0.08em] text-black/85">{description}</p>
+		</div>
+	</a>
+</article>

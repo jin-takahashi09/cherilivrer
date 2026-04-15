@@ -1,0 +1,88 @@
+---
+const isCollectionPage = Astro.url.pathname.startsWith('/collection');
+const isIndexPage = Astro.url.pathname === '/';
+---
+
+<section
+	id={isIndexPage ? 'shop' : undefined}
+	class={isCollectionPage
+		? 'border-t border-collection-ink/[0.03] bg-collection-fill px-6 py-24 text-center'
+		: 'scroll-mt-20 md:scroll-mt-24 bg-shop-section w-full border-b border-[var(--color-shop-underline)] px-6 py-20 md:px-10 md:py-28'}
+	aria-label={isCollectionPage ? undefined : 'オンラインショップ'}
+	aria-labelledby={isCollectionPage ? 'heading-collection-cta' : undefined}
+>
+	<div class="mx-auto flex w-full max-w-6xl flex-col items-center">
+		<div
+			data-index-fade={isIndexPage ? true : undefined}
+			data-collection-fade={isCollectionPage ? true : undefined}
+			class:list={[
+				'mb-14 flex max-w-2xl flex-col items-center text-center md:mb-20',
+				isIndexPage
+					? 'translate-y-10 opacity-0 transition-[opacity,transform] duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)]'
+					: isCollectionPage
+						? 'translate-y-10 opacity-0 transition-[opacity,transform] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]'
+						: '',
+			]}
+		>
+			<span class:list={['m-0 font-heading text-[0.65rem] font-normal uppercase tracking-[0.42em]', isCollectionPage ? 'text-collection-accent' : 'text-accent']}>Online Store</span>
+			<h2
+				id={isCollectionPage ? 'heading-collection-cta' : 'heading-index-online-store'}
+				class:list={['mt-5 font-heading text-[clamp(2rem,5vw,3rem)] font-normal tracking-[0.08em]', isCollectionPage ? 'text-collection-ink' : 'text-[var(--color-shop-fg)]']}
+			>
+				{isCollectionPage ? 'お買い物はこちらから' : 'Shop Online'}
+			</h2>
+			<p class:list={['mt-6 font-body text-sm leading-[2] tracking-wide md:text-[0.95rem]', isCollectionPage ? 'text-collection-ink/80' : 'text-[var(--color-shop-fg)] opacity-90']}>
+				{isCollectionPage ? 'とっておきの贈りものに出会えるようなアイテムを揃えています。' : 'すべての作品をオンラインでご覧いただけます。'}
+				<br class="hidden sm:block" />
+				{isCollectionPage ? 'ぜひ公式ショップを覗いてみてください。' : '大切な人への贈り物探しをお楽しみください。'}
+			</p>
+		</div>
+
+		<div
+			data-index-fade={isIndexPage ? true : undefined}
+			class:list={[
+				'flex w-full max-w-xl flex-col items-center justify-center gap-10 sm:flex-row',
+				isIndexPage
+					? 'translate-y-10 opacity-0 transition-[opacity,transform] delay-100 duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:delay-150'
+					: '',
+			]}
+		>
+			<a
+				href="https://cherilivrer.base.shop"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="BASE オンラインストアを開く"
+				class={isCollectionPage
+					? "relative inline-flex w-full items-center justify-center gap-3 overflow-hidden border border-collection-ink bg-transparent px-8 py-4 text-[0.75rem] tracking-[0.2em] text-collection-ink transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-collection-ink before:transition-all before:duration-500 before:content-[''] hover:text-white hover:before:w-full active:text-white active:before:w-full sm:w-[220px]"
+					: "relative inline-flex w-full items-center justify-center gap-3 overflow-hidden border border-[var(--color-shop-fg)] bg-transparent px-8 py-4 text-[0.75rem] tracking-[0.2em] text-[var(--color-shop-fg)] transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[var(--color-shop-fg)] before:transition-all before:duration-500 before:content-[''] hover:text-white hover:before:w-full active:text-white active:before:w-full sm:w-[220px]"}
+			>
+				<span class="relative z-10">BASE SHOP</span>
+			</a>
+			<a
+				href="https://lin.ee/m3M0UIf"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="minne（LINE）を開く"
+				class={isCollectionPage
+					? "relative inline-flex w-full items-center justify-center gap-3 overflow-hidden border border-collection-ink bg-transparent px-8 py-4 text-[0.75rem] tracking-[0.2em] text-collection-ink transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-collection-ink before:transition-all before:duration-500 before:content-[''] hover:text-white hover:before:w-full active:text-white active:before:w-full sm:w-[220px]"
+					: "relative inline-flex w-full items-center justify-center gap-3 overflow-hidden border border-[var(--color-shop-fg)] bg-transparent px-8 py-4 text-[0.75rem] tracking-[0.2em] text-[var(--color-shop-fg)] transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[var(--color-shop-fg)] before:transition-all before:duration-500 before:content-[''] hover:text-white hover:before:w-full active:text-white active:before:w-full sm:w-[220px]"}
+			>
+				<span class="relative z-10">minne</span>
+			</a>
+		</div>
+
+		<p
+			data-index-fade={isIndexPage ? true : undefined}
+			class:list={[
+				'mt-8 text-center text-[0.72rem] leading-loose tracking-wide md:text-xs',
+				isCollectionPage ? 'text-collection-muted' : 'text-[var(--color-shop-fg)]/70',
+				isIndexPage
+					? 'translate-y-10 opacity-0 transition-[opacity,transform] delay-200 duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:delay-300'
+					: '',
+			]}
+		>
+			お花のボリュームやバルーンの数、仕入れ状況により価格が異なる場合がございます。<br />
+			詳細はInstagramまたはLINEよりお問い合わせください。
+		</p>
+	</div>
+</section>
