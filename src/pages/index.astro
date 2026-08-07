@@ -16,10 +16,19 @@ const products = [
 	{ src: flowerImg, alt: "手作りフラワーギフトの画像", title: "Flower", description: "暮らしに寄り添う花の彩り", href: "/collection#category-flower", offsetClass: "md:mt-14 lg:mt-18" },
 	{ src: seasonImg, alt: "手作りシーズンギフトの画像", title: "Season", description: "季節に寄り添うギフト", href: "/collection#category-season", offsetClass: "md:mt-28 lg:mt-36" },
 ];
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	name: 'Cheri Livrer | 手作りバルーン・フラワーギフト',
+	description: '記念日や特別な日に寄り添う手作りのバルーン・フラワーギフトブランド Cheri Livrer。',
+	inLanguage: 'ja',
+};
 ---
 
-<Layout title="topページ | Cheri Livrer" description="Cheri Livrerは、記念日や特別な日に寄り添う手作りのバルーン・フラワーギフトをお届けするブランドです。想いを込めた作品や世界観をご紹介します。">
+<Layout title="Cheri Livrer | 手作りバルーン・フラワーギフト" description="記念日や特別な日に寄り添う手作りのバルーン・フラワーギフトブランド Cheri Livrer。コレクション紹介とオンラインショップ導線をご案内します。" {jsonLd}>
 	<main id="main-content" tabindex="-1">
+		<h1 class="sr-only">Cheri Livrer | 手作りバルーン・フラワーギフト</h1>
 		<Hero />
 		<section id="about" class="scroll-mt-20 md:scroll-mt-24 border-t border-black/[0.06] bg-[#f7f1e3]" aria-label="コンセプト">
 			<div class="flex flex-col items-start justify-start gap-8 px-10 py-12 md:px-11 md:py-16 lg:mx-auto lg:w-fit lg:flex-row lg:items-start lg:justify-center lg:gap-28 lg:px-12 lg:py-24">
@@ -48,7 +57,11 @@ const products = [
 				</div>
 
 				<div class="flex flex-col items-start justify-center gap-12">
-					<p class="text-gray lg:w-100">大切な人へ"おめでとう"や"ありがとう"の気持ちを込めて。バルーンやお花で想いを優しくカタチにしてお届けします。特別な瞬間を彩るギフトのお手伝いをさせてください。</p>
+					<p class="text-gray lg:w-100">
+						大切な人へ"おめでとう"や"ありがとう"の気持ちを込めて。<br class="md:hidden" />
+						バルーンやお花で想いを優しくカタチにしてお届けします。<br class="md:hidden" />
+						特別な瞬間を彩るギフトのお手伝いをさせてください。
+					</p>
 					
 					<a href="/about" class="relative inline-flex items-center gap-3 overflow-hidden border border-black px-6 py-3 text-[0.72rem] tracking-[0.2em] text-black/90 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-black before:transition-all before:duration-500 before:content-[''] hover:text-white hover:before:w-full active:text-white active:before:w-full">
 						<span class="relative z-10">ABOUT US</span>

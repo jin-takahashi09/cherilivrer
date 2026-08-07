@@ -16,9 +16,22 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
+.env.*.local
 
 # macOS-specific files
 .DS_Store
 
 # jetbrains setting folder
 .idea/
+
+# Cursor / AI workflow (local only)
+.cursor/
+.cursor-backup/
+PROJECT_CONTEXT.md
+RESTORE_PROMPT.md
+seo.md
+
+# deploy platform local config
+.vercel/
+.netlify/

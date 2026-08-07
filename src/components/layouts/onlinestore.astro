@@ -27,13 +27,19 @@ const isIndexPage = Astro.url.pathname === '/';
 			<span class:list={['m-0 font-heading text-[0.65rem] font-normal uppercase tracking-[0.42em]', isCollectionPage ? 'text-collection-accent' : 'text-accent']}>Online Store</span>
 			<h2
 				id={isCollectionPage ? 'heading-collection-cta' : 'heading-index-online-store'}
-				class:list={['mt-5 font-heading text-[clamp(2rem,5vw,3rem)] font-normal tracking-[0.08em]', isCollectionPage ? 'text-collection-ink' : 'text-[var(--color-shop-fg)]']}
+				class:list={['mt-5 font-heading text-[clamp(2rem,5vw,3rem)] font-normal tracking-[0.04em] md:tracking-[0.08em] [overflow-wrap:anywhere] [word-break:keep-all]', isCollectionPage ? 'text-collection-ink' : 'text-[var(--color-shop-fg)]']}
 			>
-				{isCollectionPage ? 'お買い物はこちらから' : 'Shop Online'}
+				{isCollectionPage ? (
+					<>
+						お買い物は<span class="whitespace-nowrap">こちらから</span>
+					</>
+				) : (
+					'Shop Online'
+				)}
 			</h2>
 			<p class:list={['mt-6 font-body text-sm leading-[2] tracking-wide md:text-[0.95rem]', isCollectionPage ? 'text-collection-ink/80' : 'text-[var(--color-shop-fg)] opacity-90']}>
 				{isCollectionPage ? 'とっておきの贈りものに出会えるようなアイテムを揃えています。' : 'すべての作品をオンラインでご覧いただけます。'}
-				<br class="hidden sm:block" />
+				<br class="sm:hidden" />
 				{isCollectionPage ? 'ぜひ公式ショップを覗いてみてください。' : '大切な人への贈り物探しをお楽しみください。'}
 			</p>
 		</div>

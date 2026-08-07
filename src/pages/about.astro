@@ -11,9 +11,16 @@ import boothImg from '../assets/img/hero.jpg';
 
 const title = 'About | Cheri Livrer';
 const description = 'Cheri Livrer の想いやブランドについてご紹介します。';
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'AboutPage',
+	name: 'About | Cheri Livrer',
+	description,
+	inLanguage: 'ja',
+};
 ---
 
-<Layout {title} {description}>
+<Layout {title} {description} {jsonLd}>
 	<Header />
 	<main id="main-content" class="bg-[var(--color-header-bg)] overflow-x-hidden pt-14 text-[var(--color-black)] antialiased md:pt-24" tabindex="-1">
 		<section class="px-6 pt-8 md:px-10 md:pt-10" aria-labelledby="about-heading">

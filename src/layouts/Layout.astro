@@ -7,22 +7,49 @@ interface Props {
 	description?: string;
 	/** true のとき検索結果に出したくないページ（404 等） */
 	noindex?: boolean;
+	/** ページ固有の構造化データ（JSON-LD） */
+	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
 	title: titleProp,
 	description: descriptionProp,
 	noindex = false,
+	jsonLd,
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://example.com');
-const canonicalURL = new URL(Astro.url.pathname, site);
+const hasValidSite = site.hostname !== 'example.com';
+const canonicalURL = hasValidSite ? new URL(Astro.url.pathname, site) : undefined;
 const defaultTitle = 'Cheri Livrer | 手作りバルーン・フラワーギフト';
 const defaultDescription =
 	'記念日や特別な日に贈る、手作りのバルーン・フラワーギフト。Cheri Livrer（シェリリヴレ）のコンセプトと作品をご紹介します。';
 const title = titleProp ?? defaultTitle;
 const description = descriptionProp ?? defaultDescription;
-const ogImage = new URL('/ogp.jpg', site).href;
+const ogImage = hasValidSite ? new URL('/ogp.jpg', site).href : undefined;
+const websiteJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: 'Cheri Livrer',
+	url: site.href,
+	inLanguage: 'ja',
+};
+const organizationJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'Cheri Livrer',
+	url: site.href,
+	logo: new URL('/favicon.svg', site).href,
+	sameAs: [
+		'https://www.instagram.com/cheri_livrer',
+		'https://lin.ee/m3M0UIf',
+	],
+};
+const jsonLdList = [
+	websiteJsonLd,
+	organizationJsonLd,
+	...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
+];
 ---
 
 <!doctype html>
@@ -32,24 +59,34 @@ const ogImage = new URL('/ogp.jpg', site).href;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		{noindex && <meta name="robots" content="noindex, follow" />}
-		{!noindex && <link rel="canonical" href={canonicalURL.href} />}
+		{!noindex && <meta name="robots" content="index, follow, max-image-preview:large" />}
+		{!noindex && canonicalURL && <link rel="canonical" href={canonicalURL.href} />}
+		{canonicalURL && <link rel="alternate" hreflang="ja" href={canonicalURL.href} />}
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="ja_JP" />
-		<meta property="og:url" content={canonicalURL.href} />
+		{canonicalURL && <meta property="og:url" content={canonicalURL.href} />}
 		<meta property="og:site_name" content="Cheri Livrer" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={ogImage} />
+		{ogImage && <meta property="og:image" content={ogImage} />}
+		{ogImage && <meta property="og:image:alt" content="Cheri Livrer のブランドイメージ" />}
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={ogImage} />
+		{ogImage && <meta name="twitter:image" content={ogImage} />}
+		{ogImage && <meta name="twitter:image:alt" content="Cheri Livrer のブランドイメージ" />}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		{
+			!noindex &&
+				jsonLdList.map((entry) => (
+					<script type="application/ld+json" set:html={JSON.stringify(entry)} />
+				))
+		}
 	</head>
 	<body>
 		<slot />

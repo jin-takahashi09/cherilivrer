@@ -19,7 +19,14 @@ import collectionSeasonImg3 from '../assets/img/collection/collection-season-img
 
 const title = 'Collection | Cheri Livrer';
 const description =
-	'Cheri Livrer のバルーン・フラワー・シーズンギフトなどのコレクション。横スクロールでラインナップをご覧いただけます。';
+	'Cheri Livrer のバルーン・フラワー・シーズン・ブライダル・フォトブースなどのコレクション。横スクロールでラインナップをご覧いただけます。';
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: 'Collection | Cheri Livrer',
+	description,
+	inLanguage: 'ja',
+};
 
 const baseShop = 'https://cherilivrer.base.shop';
 const lineShop = 'https://lin.ee/m3M0UIf';
@@ -108,7 +115,7 @@ const categories: Category[] = [
 				image: collectionFlowerImg3,
 				title: 'しめ縄',
 				alt: 'しめ縄の画像',
-				desc: ['小ぶりで飾りやすい、。', 'あたたかみのあるフラワーギフト'],
+				desc: ['小ぶりで飾りやすい、', 'あたたかみのあるフラワーギフト。'],
 			},
 			{
 				image: collectionFlowerImg4,
@@ -147,10 +154,68 @@ const categories: Category[] = [
 			},
 		],
 	},
+	{
+		id: 'category-bridal',
+		num: '04',
+		title: 'Bridal',
+		intro: [
+			'結婚式や前撮りなど、特別な一日を彩るブライダルギフト。',
+			'やさしい色合いと華やかさで、大切な瞬間をより一層印象的に。',
+		],
+		items: [
+			{
+				seed: 'bridal-1',
+				title: 'ブライダルブーケ',
+				alt: 'ブライダルブーケの画像',
+				desc: ['白を基調にまとめた、', '上品で華やかなブライダルブーケです。'],
+			},
+			{
+				seed: 'bridal-2',
+				title: 'ウェディング装飾',
+				alt: 'ウェディング装飾の画像',
+				desc: ['会場をやさしく彩る、', '特別感のある装飾アイテムです。'],
+			},
+			{
+				seed: 'bridal-3',
+				title: 'リングピロー',
+				alt: 'リングピローの画像',
+				desc: ['大切な誓いの瞬間を彩る、', 'あたたかみのあるリングピローです。'],
+			},
+		],
+	},
+	{
+		id: 'category-photo-booth',
+		num: '05',
+		title: 'Photo Booth',
+		intro: [
+			'記念日やパーティー、イベントで楽しめるフォトブースアイテム。',
+			'写真に残る特別なひとときを、華やかに演出します。',
+		],
+		items: [
+			{
+				seed: 'photo-booth-1',
+				title: 'フォトブース装飾',
+				alt: 'フォトブース装飾の画像',
+				desc: ['撮影スペースを華やかに彩る、', '印象的な装飾アイテムです。'],
+			},
+			{
+				seed: 'photo-booth-2',
+				title: '撮影用小物',
+				alt: '撮影用小物の画像',
+				desc: ['写真をより楽しく演出する、', '可愛らしい撮影用小物です。'],
+			},
+			{
+				seed: 'photo-booth-3',
+				title: '記念写真の演出',
+				alt: '記念写真の演出の画像',
+				desc: ['特別な一日を写真に残す、', '華やかな演出アイテムです。'],
+			},
+		],
+	},
 ];
 ---
 
-<Layout {title} {description}>
+<Layout {title} {description} {jsonLd}>
 	<a
 		href="#main-content"
 		class="absolute left-4 top-0 z-[100] -translate-y-full rounded border border-collection-ink/10 bg-[var(--color-header-bg)] px-4 py-2 text-sm text-[var(--color-header-fg)] shadow-sm transition-transform focus:translate-y-4 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
@@ -173,7 +238,7 @@ const categories: Category[] = [
 				class="text-xs leading-loose tracking-widest text-collection-muted opacity-0 transition-[opacity,transform] delay-100 duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:text-sm translate-y-10 md:delay-150"
 				data-collection-fade
 			>
-				横にスクロールして、ギフトアイテムをご覧ください。<br class="hidden md:block" />
+				横にスクロールして、ギフトアイテムをご覧ください。<br class="md:hidden" />
 				詳細はオンラインショップにてご案内しております。
 			</p>
 		</section>
@@ -215,10 +280,10 @@ const categories: Category[] = [
 						</div>
 
 						<div
-							class="-mx-6 w-full translate-y-10 px-6 opacity-0 transition-[opacity,transform] delay-200 duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:mx-0 md:w-[70%] md:px-0 md:delay-300"
+							class="-mx-6 w-full min-w-0 translate-y-10 opacity-0 transition-[opacity,transform] delay-200 duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:mx-0 md:w-[70%] md:delay-300"
 							data-collection-fade
 						>
-							<div class="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-10 [-ms-overflow-style:none] [scrollbar-width:none] md:gap-8 [&::-webkit-scrollbar]:hidden">
+							<div class="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-10 pl-6 pr-6 md:pr-0 [-ms-overflow-style:none] [scrollbar-width:none] md:gap-8 [&::-webkit-scrollbar]:hidden">
 								{cat.items.map((item) => (
 									<a
 										href={baseShop}
