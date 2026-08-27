@@ -16,6 +16,9 @@ import collectionFlowerImg4 from '../assets/img/collection/collection-flower-img
 import collectionSeasonImg1 from '../assets/img/collection/collection-season-img1.jpg';
 import collectionSeasonImg2 from '../assets/img/collection/collection-season-img2.jpg';
 import collectionSeasonImg3 from '../assets/img/collection/collection-season-img3.jpg';
+import collectionBridalImg1 from '../assets/img/collection/collection-bridal-img1.jpg';
+import collectionPhotoBoothImg1 from '../assets/img/collection/collection-photo-booth-img1.jpg';
+import collectionPhotoBoothImg2 from '../assets/img/collection/collection-photo-booth-img2.jpg';
 
 const title = 'Collection | Cheri Livrer';
 const description =
@@ -164,22 +167,10 @@ const categories: Category[] = [
 		],
 		items: [
 			{
-				seed: 'bridal-1',
+				image: collectionBridalImg1,
 				title: 'ブライダルブーケ',
-				alt: 'ブライダルブーケの画像',
-				desc: ['白を基調にまとめた、', '上品で華やかなブライダルブーケです。'],
-			},
-			{
-				seed: 'bridal-2',
-				title: 'ウェディング装飾',
-				alt: 'ウェディング装飾の画像',
-				desc: ['会場をやさしく彩る、', '特別感のある装飾アイテムです。'],
-			},
-			{
-				seed: 'bridal-3',
-				title: 'リングピロー',
-				alt: 'リングピローの画像',
-				desc: ['大切な誓いの瞬間を彩る、', 'あたたかみのあるリングピローです。'],
+				alt: 'ひまわりのブライダルブーケの画像',
+				desc: ['ひまわりをあしらった、', '華やかで印象的なブライダルブーケです。'],
 			},
 		],
 	},
@@ -193,22 +184,16 @@ const categories: Category[] = [
 		],
 		items: [
 			{
-				seed: 'photo-booth-1',
+				image: collectionPhotoBoothImg1,
 				title: 'フォトブース装飾',
 				alt: 'フォトブース装飾の画像',
-				desc: ['撮影スペースを華やかに彩る、', '印象的な装飾アイテムです。'],
+				desc: ['お花と小物で空間を彩る、', '夢みたいな撮影セットです。'],
 			},
 			{
-				seed: 'photo-booth-2',
-				title: '撮影用小物',
-				alt: '撮影用小物の画像',
-				desc: ['写真をより楽しく演出する、', '可愛らしい撮影用小物です。'],
-			},
-			{
-				seed: 'photo-booth-3',
-				title: '記念写真の演出',
-				alt: '記念写真の演出の画像',
-				desc: ['特別な一日を写真に残す、', '華やかな演出アイテムです。'],
+				image: collectionPhotoBoothImg2,
+				title: 'フォトブース装飾',
+				alt: 'フォトブース装飾の画像',
+				desc: ['フラワーとフルーツをあしらった、', 'やさしく華やかな撮影演出です。'],
 			},
 		],
 	},
@@ -297,7 +282,7 @@ const categories: Category[] = [
 												alt={item.alt}
 												width={item.image?.width ?? 600}
 												height={item.image?.height ?? 800}
-												class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+												class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
 												loading="lazy"
 												decoding="async"
 											/>
