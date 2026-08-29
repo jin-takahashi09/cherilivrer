@@ -4,6 +4,11 @@ server {
     root         /usr/share/nginx/html;
     index        index.html;
 
+    # Cloud Run は外側で HTTPS 終端し、コンテナは :8080 で待ち受ける。
+    # ディレクトリへのリダイレクト（/about → /about/）で Location に :8080 を出さない。
+    absolute_redirect off;
+    port_in_redirect off;
+
     location / {
         try_files $uri $uri/ $uri.html =404;
     }
