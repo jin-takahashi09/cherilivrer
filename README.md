@@ -47,6 +47,26 @@ Cheri Livrer は、バルーンやアーティフィシャルフラワーを用�
 
 ---
 
+## サイトの画面
+
+### PC
+
+| トップページ | コレクション |
+| :---: | :---: |
+| <img src="docs/screenshots/pc-home.png" alt="PCトップページ" width="100%"> | <img src="docs/screenshots/pc-collection.png" alt="PCコレクション" width="100%"> |
+| About | |
+| <img src="docs/screenshots/pc-about.png" alt="PC About" width="100%"> | |
+
+### スマホ
+
+| トップページ | コレクション |
+| :---: | :---: |
+| <img src="docs/screenshots/sp-home.png" alt="スマホトップページ" width="100%"> | <img src="docs/screenshots/sp-collection.png" alt="スマホコレクション" width="100%"> |
+| About | |
+| <img src="docs/screenshots/sp-about.png" alt="スマホ About" width="100%"> | |
+
+---
+
 ## ローカル起動
 
 ### 前提
@@ -76,6 +96,7 @@ npm run preview
 
 | サービス      | URL                                                                              |
 | --------- | -------------------------------------------------------------------------------- |
+| 公開サイト     | [https://cherilivrer-git-290552559575.asia-northeast1.run.app](https://cherilivrer-git-290552559575.asia-northeast1.run.app) |
 | オンラインショップ | [https://cherilivrer.base.shop](https://cherilivrer.base.shop)                   |
 | Instagram | [https://www.instagram.com/cheri_livrer](https://www.instagram.com/cheri_livrer) |
 | LINE      | [https://lin.ee/m3M0UIf](https://lin.ee/m3M0UIf)                                 |
