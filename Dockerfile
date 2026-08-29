@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 # --- build: Astro 静的サイトを dist/ に出力 ---
 FROM node:22-alpine AS builder
 
@@ -22,20 +20,7 @@ ENV NGINX_ENVSUBST_FILTER=^PORT$
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # 公式 nginx イメージは /etc/nginx/templates/*.template を起動時に envsubst する
-COPY <<'EOF' /etc/nginx/templates/default.conf.template
-server {
-    listen       ${PORT};
-    server_name  _;
-    root         /usr/share/nginx/html;
-    index        index.html;
-
-    location / {
-        try_files $uri $uri/ $uri.html =404;
-    }
-
-    error_page 404 /404.html;
-}
-EOF
+COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
 
 EXPOSE 8080
 
