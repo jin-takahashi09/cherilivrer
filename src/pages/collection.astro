@@ -273,7 +273,7 @@ const categories: Category[] = [
 							class="-mx-6 w-full min-w-0 translate-y-10 opacity-0 transition-[opacity,transform] delay-200 duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:mx-0 md:w-[70%] md:delay-300"
 							data-collection-fade
 						>
-							<div class="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-10 pl-6 pr-6 md:pr-0 [-ms-overflow-style:none] [scrollbar-width:none] md:gap-8 [&::-webkit-scrollbar]:hidden">
+							<div class="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-6 scroll-pr-6 pb-10 pl-6 pr-6 [-ms-overflow-style:none] [scrollbar-width:none] md:scroll-pl-0 md:scroll-pr-0 md:pl-6 md:pr-0 md:gap-8 [&::-webkit-scrollbar]:hidden">
 								{cat.items.map((item) => (
 									<a
 										href={baseShop}
@@ -317,7 +317,6 @@ const categories: Category[] = [
 										</div>
 									</a>
 								))}
-								<div class="w-1 shrink-0 md:hidden" aria-hidden="true" />
 							</div>
 						</div>
 					</div>
