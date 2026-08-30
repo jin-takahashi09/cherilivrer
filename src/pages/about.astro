@@ -29,7 +29,7 @@ const serviceImageSizesFull = '(max-width: 767px) 90vw, min(1200px, 100vw)';
 <Layout {title} {description} {jsonLd}>
 	<Header />
 	<main id="main-content" class="bg-[var(--color-header-bg)] overflow-x-hidden pt-14 text-[var(--color-black)] antialiased md:pt-24" tabindex="-1">
-		<section class="px-6 pt-8 md:px-10 md:pt-10" aria-labelledby="about-heading">
+		<section class="px-6 pt-8 md:px-10 md:pt-0 lg:pt-10" aria-labelledby="about-heading">
 			<div class="flex flex-col items-center justify-center">
 				<h1 id="about-heading" class="font-heading">About Us</h1>
 				<span class="font-body text-sm text-[var(--color-gray)]">Cheri Livrer について</span>
@@ -88,7 +88,7 @@ const serviceImageSizesFull = '(max-width: 767px) 90vw, min(1200px, 100vw)';
 				>
 					<p class="mb-4 font-heading text-xs uppercase tracking-[0.3em] text-accent">Our Service</p>
 					<h2 id="what-we-do-heading" class="font-heading text-3xl tracking-widest text-[var(--color-black)] md:text-4xl">
-						私たちがお届けできること
+						私たちが<br class="md:hidden" />お届けできること
 					</h2>
 				</div>
 
