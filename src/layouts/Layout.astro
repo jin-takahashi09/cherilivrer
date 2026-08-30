@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import { heroImage, heroSizes, heroWidths } from '../lib/hero-image';
 
 interface Props {
 	/** 未指定時はトップ用のデフォルト */
@@ -53,6 +55,18 @@ const jsonLdList = [
 
 const googleFontsUrl =
 	'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Shippori+Mincho:wght@400;500&display=swap';
+
+const isHome = Astro.url.pathname === '/';
+const heroPreloadSrcSet = isHome
+	? (
+			await Promise.all(
+				heroWidths.map(async (width) => {
+					const image = await getImage({ src: heroImage, width, format: 'webp' });
+					return `${image.src} ${width}w`;
+				}),
+			)
+		).join(', ')
+	: undefined;
 ---
 
 <!doctype html>
@@ -81,6 +95,18 @@ const googleFontsUrl =
 		{ogImage && <meta name="twitter:image:alt" content="Cheri Livrer のブランドイメージ" />}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		{
+			heroPreloadSrcSet && (
+				<link
+					rel="preload"
+					as="image"
+					type="image/webp"
+					fetchpriority="high"
+					imagesrcset={heroPreloadSrcSet}
+					imagesizes={heroSizes}
+				/>
+			)
+		}
 		<link
 			rel="stylesheet"
 			href={googleFontsUrl}

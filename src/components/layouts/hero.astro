@@ -1,17 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import Header from './Header.astro';
-import heroImg from '../../assets/img/hero.jpg';
+import { heroImage, heroSizes, heroWidths } from '../../lib/hero-image';
 ---
 
 <section id="home" class="scroll-mt-20 md:scroll-mt-24 w-full pt-14 md:pt-24" aria-label="トップ">
 	<Header />
 	<div class="relative overflow-hidden lg:h-[calc(100vh-6rem)]">
 		<Image
-			src={heroImg}
+			src={heroImage}
 			alt="Cheri Livrer ヒーロー画像"
-			widths={[390, 480, 640, 768, 800, 960, 1280, 1477]}
-			sizes="100vw"
+			widths={[...heroWidths]}
+			sizes={heroSizes}
 			class="block h-auto w-full lg:h-full lg:w-full lg:object-cover lg:object-center"
 			loading="eager"
 			fetchpriority="high"
