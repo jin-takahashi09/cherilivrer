@@ -22,8 +22,10 @@ const { fixed = true } = Astro.props;
 		<Image
 			src={logoImg}
 			alt="Cheri Livrer"
-			width={500}
-			height={500}
+			widths={[112, 192, 256]}
+			sizes="(max-width: 767px) 56px, 96px"
+			width={256}
+			height={256}
 			class="logo-on-light h-14 w-auto object-contain md:h-24"
 			loading="eager"
 		/>

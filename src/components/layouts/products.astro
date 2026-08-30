@@ -28,6 +28,8 @@ const { src, alt, title, description, href, offsetClass = "", revealDelayClass =
 			<Image
 				src={src}
 				alt={alt}
+				widths={[360, 480, 520, 640, 720]}
+				sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1279px) 33vw, 22rem"
 				width={520}
 				height={760}
 				class="aspect-[3/4] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-focus-visible:scale-105 md:will-change-auto"
