@@ -11,7 +11,7 @@ const { fixed = true } = Astro.props;
 
 <header
 	class:list={[
-		'z-50 flex w-full items-center justify-between gap-4 overflow-visible border-b border-black/[0.06] bg-[var(--color-header-bg)] px-6 py-0 font-body shadow-[0_2px_24px_-8px_rgba(82,72,60,0.08)] md:px-10',
+		'site-header z-50 flex w-full items-center justify-between gap-4 overflow-visible border-b border-black/[0.06] bg-[var(--color-header-bg)] px-6 py-0 font-body shadow-[0_2px_24px_-8px_rgba(82,72,60,0.08)] md:px-10',
 		fixed ? 'fixed inset-x-0 top-0' : 'relative',
 	]}
 >
@@ -63,3 +63,30 @@ const { fixed = true } = Astro.props;
 	initMobileMenu();
 	initSmoothScrollNav();
 </script>
+<style>
+	/*
+	  背景を画面最上端まで延長し、ロゴ/ナビは safe area 内に置く。
+	  top は 0 のまま（Header全体を下へずらさない）。
+	*/
+	.site-header {
+		padding-top: env(safe-area-inset-top, 0px);
+	}
+
+	@supports (padding-top: constant(safe-area-inset-top)) {
+		.site-header {
+			padding-top: constant(safe-area-inset-top);
+			padding-top: env(safe-area-inset-top, 0px);
+		}
+	}
+
+	.site-header::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 100%;
+		height: max(env(safe-area-inset-top, 0px), 50px);
+		background-color: var(--color-header-bg, #f9f7f2);
+		pointer-events: none;
+	}
+</style>
