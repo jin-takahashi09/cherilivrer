@@ -32,9 +32,6 @@ const jsonLd = {
 	inLanguage: 'ja',
 };
 
-const baseShop = 'https://cherilivrer.base.shop';
-const lineShop = 'https://lin.ee/m3M0UIf';
-
 /** Card: w-[75%] / sm:w-[45%] / lg:w-[22rem] — 2xまでを想定した候補幅 */
 const collectionImageWidths = [360, 480, 640, 720];
 const collectionImageSizes = '(max-width: 639px) 75vw, (max-width: 1023px) 45vw, 22rem';
@@ -275,12 +272,7 @@ const categories: Category[] = [
 						>
 							<div class="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-6 scroll-pr-6 pb-10 pl-6 pr-6 [-ms-overflow-style:none] [scrollbar-width:none] md:scroll-pl-0 md:scroll-pr-0 md:pl-6 md:pr-0 md:gap-8 [&::-webkit-scrollbar]:hidden">
 								{cat.items.map((item) => (
-									<a
-										href={baseShop}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="group block w-[75%] shrink-0 snap-start sm:w-[45%] lg:w-[22rem]"
-									>
+									<div class="group w-[75%] shrink-0 snap-start sm:w-[45%] lg:w-[22rem]">
 										<div class="relative mb-5 aspect-[3/4] w-full overflow-hidden rounded-sm bg-collection-fill">
 											{
 												item.image ? (
@@ -315,7 +307,7 @@ const categories: Category[] = [
 												{item.desc.join('\n')}
 											</p>
 										</div>
-									</a>
+									</div>
 								))}
 							</div>
 						</div>
