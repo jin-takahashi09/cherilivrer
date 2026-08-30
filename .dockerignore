@@ -19,9 +19,6 @@ dist
 # docs & local notes (not needed for build)
 docs
 *.md
-PROJECT_CONTEXT.md
-RESTORE_PROMPT.md
-seo.md
 
 # deploy platform local config
 .vercel

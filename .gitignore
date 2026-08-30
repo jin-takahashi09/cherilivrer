@@ -28,9 +28,6 @@ pnpm-debug.log*
 # Cursor / AI workflow (local only)
 .cursor/
 .cursor-backup/
-PROJECT_CONTEXT.md
-RESTORE_PROMPT.md
-seo.md
 
 # deploy platform local config
 .vercel/

@@ -4,12 +4,35 @@ import Hero from '../components/layouts/hero.astro';
 import Footer from '../components/layouts/footer.astro';
 import Products from '../components/layouts/products.astro';
 import OnlineStore from '../components/layouts/onlinestore.astro';
-import { Image } from "astro:assets";
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import conceptImg from '../assets/img/concept.jpg';
 import conceptMdSpImg from '../assets/img/concept-md-sp.webp';
 import seasonImg from '../assets/img/season.jpg';
 import balloonImg from '../assets/img/balloon.jpg';
 import flowerImg from '../assets/img/flower.jpg';
+
+/** Home concept: max-width 1023px は横長 crop、lg+ は縦長 450px 固定表示 */
+const conceptMobileWidths = [320, 480, 640, 800, 954];
+const conceptMobileSizes = '(max-width: 639px) calc(100vw - 5rem), 450px';
+const conceptDesktopWidths = [450, 900];
+const conceptDesktopSizes = '450px';
+
+async function buildSrcSet(src: ImageMetadata, widths: number[]) {
+	const images = await Promise.all(
+		widths.map(async (width) => {
+			const image = await getImage({ src, width, format: 'webp' });
+			return `${image.src} ${width}w`;
+		}),
+	);
+	return images.join(', ');
+}
+
+const [conceptMobileSrcSet, conceptDesktopSrcSet, conceptDesktopFallback] = await Promise.all([
+	buildSrcSet(conceptMdSpImg, conceptMobileWidths),
+	buildSrcSet(conceptImg, conceptDesktopWidths),
+	getImage({ src: conceptImg, width: 450, format: 'webp' }),
+]);
 
 const products = [
 	{ src: balloonImg, alt: "手作りバルーンギフトの画像", title: "Balloon", description: "上品に彩るバルーンギフト", href: "/collection/#category-balloon", offsetClass: "md:mt-0" },
@@ -33,9 +56,16 @@ const jsonLd = {
 		<section id="about" class="scroll-mt-20 md:scroll-mt-24 border-t border-black/[0.06] bg-[#f7f1e3]" aria-label="コンセプト">
 			<div class="flex flex-col items-start justify-start gap-8 px-10 py-12 md:px-11 md:py-16 lg:mx-auto lg:w-fit lg:flex-row lg:items-start lg:justify-center lg:gap-28 lg:px-12 lg:py-24">
 				<picture data-index-fade class="block translate-y-10 overflow-hidden rounded-xl opacity-0 transition-[opacity,transform] duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] lg:shrink-0">
-					<source media="(max-width: 1023px)" srcset={conceptMdSpImg.src} />
+					<source
+						media="(max-width: 1023px)"
+						srcset={conceptMobileSrcSet}
+						sizes={conceptMobileSizes}
+						type="image/webp"
+					/>
 					<img
-						src={conceptImg.src}
+						src={conceptDesktopFallback.src}
+						srcset={conceptDesktopSrcSet}
+						sizes={conceptDesktopSizes}
 						alt="手作りバルーンの制作イメージ"
 						width="450"
 						height="600"
