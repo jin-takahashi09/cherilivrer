@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/layouts/Header.astro';
 import Footer from '../components/layouts/footer.astro';
 import OnlineStore from '../components/layouts/onlinestore.astro';
+import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import collectionBalloonImg1 from '../assets/img/collection/collection-balloon-img1.jpg';
 import collectionBalloonImg2 from '../assets/img/collection/collection-balloon-img2.jpg';
@@ -33,6 +34,10 @@ const jsonLd = {
 
 const baseShop = 'https://cherilivrer.base.shop';
 const lineShop = 'https://lin.ee/m3M0UIf';
+
+/** Card: w-[75%] / sm:w-[45%] / lg:w-[22rem] — 2xまでを想定した候補幅 */
+const collectionImageWidths = [360, 480, 640, 720];
+const collectionImageSizes = '(max-width: 639px) 75vw, (max-width: 1023px) 45vw, 22rem';
 
 type Item = {
 	seed?: string;
@@ -277,15 +282,29 @@ const categories: Category[] = [
 										class="group block w-[75%] shrink-0 snap-start sm:w-[45%] lg:w-[22rem]"
 									>
 										<div class="relative mb-5 aspect-[3/4] w-full overflow-hidden rounded-sm bg-collection-fill">
-											<img
-												src={item.image?.src ?? `https://picsum.photos/seed/${item.seed}/600/800`}
-												alt={item.alt}
-												width={item.image?.width ?? 600}
-												height={item.image?.height ?? 800}
-												class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
-												loading="lazy"
-												decoding="async"
-											/>
+											{
+												item.image ? (
+													<Image
+														src={item.image}
+														alt={item.alt}
+														widths={collectionImageWidths}
+														sizes={collectionImageSizes}
+														class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+														loading="lazy"
+														decoding="async"
+													/>
+												) : (
+													<img
+														src={`https://picsum.photos/seed/${item.seed}/600/800`}
+														alt={item.alt}
+														width={600}
+														height={800}
+														class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+														loading="lazy"
+														decoding="async"
+													/>
+												)
+											}
 											<div class="pointer-events-none absolute inset-0 bg-collection-ink/0 transition-colors duration-500 group-hover:bg-collection-ink/5" />
 										</div>
 										<div class="flex flex-col">
